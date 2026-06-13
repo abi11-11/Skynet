@@ -1,0 +1,72 @@
+{
+  "repository_type": "monolith",
+  "implementation_status": "pre-implementation",
+  "project_name": "skynet",
+  "parts": [
+    {
+      "part_id": "platform",
+      "display_name": "Skynet Drone Services Platform",
+      "project_type_id": "mobile",
+      "root_path": ".",
+      "status": "planned",
+      "description": "Target multi-app platform: farmer/manager mobile, pilot mobile, backend API. No source code in repo yet.",
+      "planned_subparts": [
+        {
+          "part_id": "farmer-app",
+          "type": "mobile",
+          "purpose": "Map-first booking and plot management for estate owners and farm managers"
+        },
+        {
+          "part_id": "pilot-app",
+          "type": "mobile",
+          "purpose": "Job execution, GPS telemetry, geo-tagged proof-of-service"
+        },
+        {
+          "part_id": "platform-api",
+          "type": "backend",
+          "purpose": "Tenancy, booking, dispatch, payments, geospatial processing"
+        }
+      ]
+    }
+  ],
+  "integration_points": [
+    {
+      "from": "farmer-app",
+      "to": "platform-api",
+      "type": "REST/HTTPS + offline sync",
+      "details": "Bookings, plot data, map layers, tenant hierarchy"
+    },
+    {
+      "from": "pilot-app",
+      "to": "platform-api",
+      "type": "REST/HTTPS + offline sync",
+      "details": "Job dispatch, GPS tracks, coverage reports, media upload"
+    },
+    {
+      "from": "helpline-crm",
+      "to": "platform-api",
+      "type": "Internal API",
+      "details": "Manual booking on behalf of phone-assisted farmers"
+    },
+    {
+      "from": "platform-api",
+      "to": "upi-gateway",
+      "type": "HTTPS",
+      "details": "Payment initiation and receipt generation"
+    },
+    {
+      "from": "platform-api",
+      "to": "government-land-registry",
+      "type": "REST (regional)",
+      "details": "Farm boundary validation where API available"
+    }
+  ],
+  "current_tooling": {
+    "bmad_version": "6.8.0",
+    "python": "3.12",
+    "primary_artifact_paths": [
+      "output/planning-artifacts/prd/skynet-drone-services/prd.md",
+      "docs/index.md"
+    ]
+  }
+}

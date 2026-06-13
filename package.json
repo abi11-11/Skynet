@@ -1,0 +1,17 @@
+{
+  "name": "skynet",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "web": "npm --workspace apps/web run dev",
+    "mobile": "npm --workspace apps/mobile run start",
+    "supabase:status": "npx supabase status",
+    "supabase:start": "npx supabase start",
+    "supabase:migrate": "npx supabase db push",
+    "supabase:gen-types": "npx supabase gen types typescript --schema public > packages/types/index.ts"
+  }
+}

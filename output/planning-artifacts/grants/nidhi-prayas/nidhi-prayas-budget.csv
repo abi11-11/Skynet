@@ -1,0 +1,16 @@
+Category,Item,Qty,UnitCost,Total
+Sensors,Multi-GNSS module (GPS+GLONASS),4,15000,60000
+Electronics,MCU dev boards (ESP32/STM32),10,4000,40000
+Electronics,PCB/perfboard design and fabrication (3 iterations),3,30000,90000
+Electronics,Connectors/wiring/power/memory,1,55000,55000
+Mechanical,Rugged enclosure design + 3D print (10 units),10,9000,90000
+Mechanical,Drone mounting bracket (CNC/laser cut),4,20000,80000
+Integration,Spray drone bench rental / partner access,1,125000,125000
+Field trials,Plot access/farmer engagement/crop trials,1,180000,180000
+Fab lab,PRAYAS Shala equipment + material time,1,140000,140000
+Firmware,Embedded logging + coverage algorithm dev,1,100000,100000
+Compliance,DGCA consultation & electrical safety testing,1,80000,80000
+Logistics,Travel/storage/consumables,1,70000,70000
+Reporting,Documentation/demo packaging/DST artifacts,1,40000,40000
+Contingency,Supply chain delays/rework/iteration,1,150000,150000
+,Total,, ,1000000

@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Skynet Mobile",
+    "slug": "skynet-mobile",
+    "version": "1.0.0",
+    "scheme": "skynet",
+    "platforms": ["ios", "android", "web"],
+    "sdkVersion": "56.0.0",
+    "jsEngine": "hermes",
+    "runtimeVersion": {"policy": "sdkVersion"},
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  }
+}

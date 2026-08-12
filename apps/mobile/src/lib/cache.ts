@@ -5,9 +5,10 @@ const CACHE_KEY = "skynet_farm_plots";
 
 export async function saveFarmPlots(plots: FarmPlot[]) {
   try {
-    await SecureStore.setItemAsync(CACHE_KEY, JSON.stringify(plots));
+    const serialized = JSON.stringify(plots);
+    await SecureStore.setItemAsync(CACHE_KEY, serialized);
   } catch (e) {
-    console.error("Failed to cache plots", e);
+    console.error("Failed to cache plots - serialization or storage error", e);
   }
 }
 
@@ -20,5 +21,13 @@ export async function getCachedFarmPlots(): Promise<FarmPlot[] | null> {
   } catch (e) {
     console.error("Failed to read cached plots", e);
     return null;
+  }
+}
+
+export async function clearFarmPlotsCache() {
+  try {
+    await SecureStore.deleteItemAsync(CACHE_KEY);
+  } catch (e) {
+    console.error("Failed to clear plots cache", e);
   }
 }

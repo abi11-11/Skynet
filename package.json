@@ -13,5 +13,13 @@
     "supabase:start": "npx supabase start",
     "supabase:migrate": "npx supabase db push",
     "supabase:gen-types": "npx supabase gen types typescript --schema public > packages/types/index.ts"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "react-dom": "^18.3.0",
+    "react-test-renderer": "^18.3.0"
+  },
+  "dependencies": {
+    "@turf/turf": "^6.5.0"
   }
 }

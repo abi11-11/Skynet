@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: '2026-06-06'
-last_updated: '2026-06-06'
+last_updated: '2026-06-20'
 project: 'skynet'
 project_key: 'NOKEY'
 tracking_system: 'file-system'
@@ -46,30 +46,30 @@ development_status:
   1-1-platform-foundation-and-authentication: done
   1-2-tenant-based-plot-management-database-and-api: done
   1-3-boundary-rendering-and-strict-geojson-typing: done
-  1-4-proactive-map-caching-offline-mode: review
+  1-4-proactive-map-caching-offline-mode: done
   epic-1-retrospective: done
-  epic-2: backlog
-  2-1-hazard-annotation-and-photo-upload: backlog
-  2-2-offline-pin-queue-and-background-sync: backlog
-  2-3-mission-safety-check-out-rule: backlog
-  2-4-emergency-unsynced-telephony-fallback: backlog
+  epic-2: in-progress
+  2-1-hazard-annotation-and-photo-upload: done
+  2-2-offline-pin-queue-and-background-sync: done
+  2-3-mission-safety-check-out-rule: done
+  2-4-emergency-unsynced-telephony-fallback: done
   epic-2-retrospective: optional
-  epic-3: backlog
-  3-1-service-catalog-and-area-cost-calculator: backlog
-  3-2-flight-path-optimizer-edge-function: backlog
-  3-3-pilot-dispatch-and-routing-engine: backlog
-  3-4-telephony-helpline-integration: backlog
+  epic-3: done
+  3-1-service-catalog-and-area-cost-calculator: done
+  3-2-flight-path-optimizer-edge-function: done
+  3-3-pilot-dispatch-and-routing-engine: done
+  3-4-telephony-helpline-integration: done
   epic-3-retrospective: optional
-  epic-4: backlog
-  4-1-live-telemetry-recording-and-ingestion: backlog
-  4-2-geo-tagged-media-evidence: backlog
-  4-3-automated-coverage-report-generation: backlog
-  4-4-invoicing-and-upi-payments: backlog
-  4-5-pilot-rating-and-feedback-system: backlog
-  epic-4-retrospective: optional
-  epic-5: backlog
-  5-1-external-wms-layer-toggling: backlog
-  5-2-scheduled-ndvi-ingestion-pipeline: backlog
-  5-3-ai-crop-stress-risk-engine: backlog
-  5-4-proactive-book-spray-push-notifications: backlog
+  epic-4: done
+  4-1-live-telemetry-recording-and-ingestion: done
+  4-2-geo-tagged-media-evidence: done
+  4-3-automated-coverage-report-generation: done
+  4-4-invoicing-and-upi-payments: done
+  4-5-pilot-rating-and-feedback-system: done
+  epic-4-retrospective: done
+  epic-5: done
+  5-1-external-wms-layer-toggling: done
+  5-2-scheduled-ndvi-ingestion-pipeline: done
+  5-3-ai-crop-stress-risk-engine: done
+  5-4-proactive-book-spray-push-notifications: done
   epic-5-retrospective: optional

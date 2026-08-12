@@ -37,6 +37,13 @@ A shared cache contract should be added for plot geometry and assignment metadat
 - [x] [Review][Patch] Unsafe JSON.parse casting: Validate `cached` is an array before returning, otherwise return null. [`apps/web/src/lib/cache.ts:15`]
 - [x] [Review][Defer] QuotaExceededError not handled: `localStorage.setItem` can throw if storage is full. Caught but no eviction logic implemented. [`apps/web/src/lib/cache.ts:6`] — deferred, pre-existing
 
+#### CR Pass 2 — 2026-06-14
+
+- [x] [Review][Decision] `saveFarmPlots([])` clobbers cache on empty API response [`apps/web/src/App.tsx:50`, `apps/mobile/app/page.tsx:67`] — RESOLVED: guard changed to `data && data.length > 0` in both web and mobile. Last valid cache is preserved if the API transiently returns zero plots.
+- [x] [Review][Patch] `getCachedFarmPlots` never tested — array validation guard and null-return path completely uncovered [`apps/mobile/src/lib/cache.test.ts`] — FIXED: Added 4 new test cases covering null-on-miss, valid-array-on-hit, corruption-guard (non-array JSON → null), and read-error resilience.
+- [x] [Review][Defer] SecureStore 2 KB iOS keychain size ceiling — large GeoJSON payloads may silently fail to cache [`apps/mobile/src/lib/cache.ts:8`] — deferred: platform limit, no in-story mitigation available without chunking or a different storage strategy (AsyncStorage). Acceptable for MVP scope.
+- [x] [Review][Defer] No web cache test file — `saveFarmPlots`/`getCachedFarmPlots` on web are untested [`apps/web/src/lib/cache.ts`] — deferred: web cache tests not in story file list; web unit test setup not established in this sprint.
+
 ## 📁 File List
 - `apps/mobile/src/lib/cache.ts`
 - `apps/mobile/app/page.tsx`

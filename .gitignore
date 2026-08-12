@@ -1,4 +1,5 @@
 node_modules/
+node_modules_*/
 *.exe
 .env
 .DS_Store
@@ -8,3 +9,14 @@ build/
 .next/
 coverage/
 *.log
+
+# Unnecessary files
+*diff*.txt
+important!!!.txt
+scratch/
+scratch.*
+output/
+.agents/
+.bob/
+.claude/
+test_output.txt

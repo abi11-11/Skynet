@@ -10,13 +10,24 @@ build/
 coverage/
 *.log
 
+# BMad skills, agent runtime & user configs
+.agent/
+.agents/
+.bmad-loop/
+.bob/
+.claude/
+.github/agents/
+_bmad/config.user.yaml
+_bmad/config.user.toml
+_bmad/*.bak
+_bmad/**/*.bak
+_bmad/render/
+01-preflight.md
+
 # Unnecessary files
 *diff*.txt
 important!!!.txt
 scratch/
 scratch.*
 output/
-.agents/
-.bob/
-.claude/
 test_output.txt

@@ -3,6 +3,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'maplibre-gl/dist/maplibre-gl.css';
 
 /* ── CSS Custom Properties ── */
 :root {
@@ -581,3 +582,265 @@ tr:hover td { background: var(--accent-subtle); }
 .mb-20 { margin-bottom: 20px; }
 .text-sm { font-size: 0.8rem; }
 .text-muted { color: var(--text-secondary); }
+
+/* ═══════════════════════════════════════════════════════════
+   Plots Page — Split-Pane Map Layout
+   ═══════════════════════════════════════════════════════════ */
+
+.plots-split {
+  display: flex;
+  height: calc(100vh - 130px);
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.plots-sidebar {
+  width: 280px;
+  min-width: 240px;
+  max-width: 320px;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 16px;
+  gap: 8px;
+}
+
+.plots-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.plot-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  background: var(--bg-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+
+.plot-list-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover, #334155);
+}
+
+.plot-list-item.selected {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.plot-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.plot-list-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.plot-list-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+}
+
+.plot-list-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.plot-detail-panel {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+  max-height: 38vh;
+  flex-shrink: 0;
+}
+
+.plot-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.plot-detail-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.plots-map {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  background: var(--bg-primary);
+}
+
+/* ── Map overlays ── */
+
+.map-offline-banner {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(245, 158, 11, 0.92);
+  color: #1a1a1a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+
+.map-layer-fab-wrap {
+  position: absolute;
+  bottom: 24px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.map-layer-fab {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.map-layer-fab:hover {
+  background: var(--bg-card-hover);
+  transform: scale(1.06);
+}
+
+.map-layer-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  min-width: 140px;
+}
+
+.map-layer-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s, color 0.12s;
+  font-family: inherit;
+}
+
+.map-layer-btn:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.map-layer-btn.active {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── MapLibre popup override ── */
+
+.maplibregl-popup-content {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+}
+
+.maplibregl-popup-tip {
+  display: none !important;
+}
+
+.map-popup-card {
+  padding: 12px 14px;
+}
+
+.map-popup-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.map-popup-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.map-popup-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.map-popup-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 20px;
+}

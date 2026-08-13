@@ -6,4 +6,7 @@ export default defineConfig({
   server: {
     port: 4173,
   },
+  optimizeDeps: {
+    exclude: ["maplibre-gl"],
+  },
 });

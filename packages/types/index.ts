@@ -10,14 +10,84 @@ export type GeoJSONPoint = {
   coordinates: GeoJSONPosition;
 };
 
+export type Tenant = {
+  id: string;
+  name: string;
+  level: number;
+  parent_id: string | null;
+  created_at: string;
+};
+
+export type TenantUser = {
+  tenant_id: string;
+  user_id: string;
+  role: 'owner' | 'manager' | 'sub-manager';
+};
+
+export type UserProfile = {
+  id: string;
+  email: string;
+  full_name: string | null;
+  phone_number: string | null;
+  user_type: 'owner' | 'manager' | 'farmer' | null;
+  is_active: boolean;
+  expires_at: string | null;
+  created_at: string;
+};
+
+export type Role = {
+  id: string;
+  tenant_id: string | null;
+  parent_id: string | null;
+  name: string;
+  description: string | null;
+  created_at: string;
+};
+
+export type Group = {
+  id: string;
+  tenant_id: string;
+  name: string;
+  description: string | null;
+  created_at: string;
+};
+
+export type GroupRole = {
+  id: string;
+  group_id: string;
+  role_id: string;
+  created_at: string;
+};
+
+export type UserGroup = {
+  id: string;
+  user_id: string;
+  group_id: string;
+  created_at: string;
+};
+
+export type AuditLog = {
+  id: string;
+  tenant_id: string | null;
+  user_id: string | null;
+  action: 'INSERT' | 'UPDATE' | 'DELETE';
+  table_name: string;
+  record_id: string;
+  old_data: any;
+  new_data: any;
+  created_at: string;
+};
+
 export type FarmPlot = {
   id: string;
+  tenant_id: string;
   owner_id: string;
   manager_id: string | null;
   parent_plot_id: string | null;
   name: string;
   description: string | null;
   area: GeoJSONPolygon | string | null;
+  metadata?: any;
   created_at: string;
   updated_at: string;
 };

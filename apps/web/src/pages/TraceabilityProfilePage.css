@@ -1,0 +1,110 @@
+.traceability-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-color);
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.traceability-page.loading {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+.traceability-page.error {
+  flex-direction: column;
+  text-align: center;
+}
+
+.traceability-page.error h1 {
+  color: #ff4d4f;
+  margin-bottom: 1rem;
+}
+
+.traceability-card {
+  max-width: 500px;
+  width: 100%;
+  padding: 2.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.traceability-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.traceability-header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.badge {
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.traceability-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-group p {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.monospace {
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.grade {
+  font-size: 1.5rem !important;
+  color: #3b82f6 !important;
+  font-weight: 700 !important;
+}
+
+.traceability-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

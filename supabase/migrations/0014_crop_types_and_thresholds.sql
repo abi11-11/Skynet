@@ -5,6 +5,7 @@ ALTER TABLE public.farm_plots
 ADD COLUMN crop_type text NOT NULL DEFAULT 'unknown';
 
 -- 2. Update get_active_plots_bboxes to include crop_type
+DROP FUNCTION IF EXISTS public.get_active_plots_bboxes();
 CREATE OR REPLACE FUNCTION public.get_active_plots_bboxes()
 RETURNS TABLE(id uuid, bbox_geojson jsonb, crop_type text)
 LANGUAGE sql

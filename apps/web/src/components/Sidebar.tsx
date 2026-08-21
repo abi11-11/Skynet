@@ -1,28 +1,41 @@
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../App";
+import { 
+  LayoutDashboard, Map, CloudSun, Bot, CircleDollarSign, Sprout, Settings, 
+  Sun, Moon, Leaf, Hexagon
+} from "lucide-react";
 
 const navItems = [
-  { to: "/", icon: "📊", label: "Dashboard" },
-  { to: "/plots", icon: "🗺️", label: "Farm Plots" },
-  { to: "/bookings", icon: "🚁", label: "Bookings" },
-  { to: "/invoices", icon: "🧾", label: "Invoices" },
-  { to: "/alerts", icon: "⚠️", label: "Crop Alerts" },
+  { to: "/", icon: LayoutDashboard, label: "Dashboard" },
+  { to: "/plots", icon: Map, label: "Farm Plots" },
+  { to: "/weather", icon: CloudSun, label: "Weather & Analytics" },
+  { to: "/agronomist", icon: Bot, label: "AI Agronomist" },
+  { to: "/finance", icon: CircleDollarSign, label: "Financials" },
+  { to: "/crop-health", icon: Sprout, label: "Crop Health" },
 ];
 
 const bottomItems = [
-  { to: "/settings", icon: "⚙️", label: "Settings" },
+  { to: "/settings", icon: Settings, label: "Settings" },
 ];
 
 export default function Sidebar() {
   const { user, signOut } = useAuth();
+  const [theme, setTheme] = useState(localStorage.getItem("skynet-theme") || "dark");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("skynet-theme", theme);
+  }, [theme]);
 
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <div className="sidebar-brand-icon">S</div>
+        <div className="sidebar-brand-icon">
+          <Hexagon size={16} fill="currentColor" />
+        </div>
         <div>
           <h1>Skynet</h1>
-          <span>Drone-as-a-Service</span>
         </div>
       </div>
 
@@ -35,8 +48,8 @@ export default function Sidebar() {
             end={item.to === "/"}
             className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
           >
-            <span className="nav-icon">{item.icon}</span>
-            {item.label}
+            <span className="nav-icon"><item.icon size={18} /></span>
+            <span className="nav-link-text">{item.label}</span>
           </NavLink>
         ))}
 
@@ -49,14 +62,26 @@ export default function Sidebar() {
             to={item.to}
             className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
           >
-            <span className="nav-icon">{item.icon}</span>
-            {item.label}
+            <span className="nav-icon"><item.icon size={18} /></span>
+            <span className="nav-link-text">{item.label}</span>
           </NavLink>
         ))}
       </nav>
 
       <div className="sidebar-footer">
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <button
+          className="theme-toggle"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          style={{ display: "flex", alignItems: "center", gap: "8px", background: "none", border: "none", color: "var(--text-secondary)", cursor: "pointer", width: "100%", padding: "8px" }}
+        >
+          <span className="nav-icon" style={{ display: "inline-flex", justifyContent: "center" }}>
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </span>
+          <span className="nav-link-text" style={{ fontSize: "0.857rem" }}>
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </span>
+        </button>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "12px" }}>
           <div>
             <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-primary)" }}>
               {user?.email ?? "User"}

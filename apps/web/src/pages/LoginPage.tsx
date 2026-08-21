@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../App";
 
-type Props = { onDemoLogin: () => void };
+type Props = { onDemoLogin: (email: string, id: string) => void };
 
 export default function LoginPage({ onDemoLogin }: Props) {
   const { signIn } = useAuth();
@@ -65,18 +65,30 @@ export default function LoginPage({ onDemoLogin }: Props) {
           </button>
         </form>
 
-        <div style={{ textAlign: "center", margin: "20px 0 0" }}>
-          <span style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>or</span>
+        <div style={{ textAlign: "center", margin: "20px 0 10px" }}>
+          <span style={{ color: "var(--text-muted)", fontSize: "0.8rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1 }}>or Quick Login As</span>
         </div>
 
-        <button
-          id="demo-login"
-          onClick={onDemoLogin}
-          className="btn btn-secondary btn-lg"
-          style={{ width: "100%", marginTop: 12 }}
-        >
-          🚀 Enter Demo Mode
-        </button>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "12px" }}>
+          <button
+            onClick={() => onDemoLogin("admin@skynet.farm", "11111111-1111-1111-1111-111111111111")}
+            className="btn btn-secondary btn-sm"
+          >
+            🛡️ Admin
+          </button>
+          <button
+            onClick={() => onDemoLogin("manager@skynet.farm", "22222222-2222-2222-2222-222222222222")}
+            className="btn btn-secondary btn-sm"
+          >
+            👨‍🌾 Farm Manager
+          </button>
+          <button
+            onClick={() => onDemoLogin("farmer@skynet.farm", "eaa8b274-f66a-4e66-8e23-c4ed375f5476")}
+            className="btn btn-secondary btn-sm"
+          >
+            🚜 Farmer
+          </button>
+        </div>
       </div>
     </div>
   );

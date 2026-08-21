@@ -39,4 +39,4 @@ CREATE INDEX idx_ndvi_snapshots_plot_time ON plot_ndvi_snapshots(plot_id, captur
 -- Idempotency guard: one NDVI snapshot per plot per calendar day per source
 -- Uses functional index on captured_at::date instead of full timestamptz
 CREATE UNIQUE INDEX idx_ndvi_snapshots_daily_unique
-  ON plot_ndvi_snapshots(plot_id, (captured_at::date), source);
+  ON plot_ndvi_snapshots(plot_id, (timezone('UTC'::text, captured_at)::date), source);

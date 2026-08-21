@@ -100,3 +100,28 @@ export async function getAssignedFarmPlots(): Promise<{ data: FarmPlot[] | null;
 
   return { data: normalized, error: null };
 }
+
+export async function updateFarmPlot(id: string, updates: Partial<FarmPlot>): Promise<{ error: PostgrestError | null }> {
+  const { error } = await supabase
+    .from("farm_plots")
+    .update(updates)
+    .eq("id", id);
+  return { error };
+}
+
+export async function createFarmPlot(plot: Omit<FarmPlot, "id" | "created_at">): Promise<{ data: FarmPlot | null; error: PostgrestError | null }> {
+  const { data, error } = await supabase
+    .from("farm_plots")
+    .insert([plot])
+    .select()
+    .single();
+  return { data: data as FarmPlot | null, error };
+}
+
+export async function deleteFarmPlot(id: string): Promise<{ error: PostgrestError | null }> {
+  const { error } = await supabase
+    .from("farm_plots")
+    .delete()
+    .eq("id", id);
+  return { error };
+}
